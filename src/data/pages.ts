@@ -82,3 +82,16 @@ export const megaFeatHref = (m: MenuItem): string => {
 };
 
 export const allPages = entries;
+
+/** Resolves a legacy "#p-slug" hash to the real route for that page. */
+export function deepHref(hash: string): string {
+  const slug = hash.replace(/^#p-/, "");
+  const hit = entries.find((e) => e.slug === slug);
+  if (hit) return hrefFor(hit);
+  if (caseStudySlugs.includes(slug)) return `/portfolio/${slug}`;
+  if (slug === "blog") return "/blog";
+  if (slug === "community" || slug === "community-home") return "/community";
+  if (slug === "free-tools-and-features") return "/resources/free-tools";
+  if (slug === "ai-prototype-builder") return "/resources/ai-prototype-builder";
+  return "/";
+}
