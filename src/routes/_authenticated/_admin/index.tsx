@@ -520,3 +520,5 @@ function Sparkline({ data }: { data: number[] }) {
     </svg>
   );
 }
+
+// route regen nudge
