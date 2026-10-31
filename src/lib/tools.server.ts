@@ -8,7 +8,7 @@ async function complete(prompt: string, system: string, maxOutputTokens?: number
     instructions: system,
     prompt,
     providerOptions: { openai: responsesOptions },
-    maxOutputTokens,
+    ...(maxOutputTokens ? { maxOutputTokens } : {}),
   });
   return await result.text;
 }

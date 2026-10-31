@@ -1,4 +1,5 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, notFound } from "@tanstack/react-router";
+import { DynamicLink } from "@/components/site/bits";
 import { blogPosts } from "@/data/content";
 import { LeadEmailForm } from "@/components/site/lead-form";
 
@@ -30,7 +31,7 @@ function BlogPostPage() {
         <div className="c art">
           <Link to="/blog" style={{ color: "var(--g2)" }}>
             ← All articles
-          </Link>
+          </DynamicLink>
           <div className="cv" style={{ background: post.art, marginTop: 20, aspectRatio: "16/8" }}>
             <span className="tag">{post.cat}</span>
           </div>
@@ -55,7 +56,7 @@ function BlogPostPage() {
               <Link key={b.slug} to={`/blog/${b.slug}`} className="card glass">
                 <h3>{b.title}</h3>
                 <p>{b.excerpt}</p>
-              </Link>
+              </DynamicLink>
             ))}
           </div>
         </div>
