@@ -1,24 +1,26 @@
 # Benji Agency migration (code archive → Lovable)
 
-Source: benji-agency-site.zip (single-file static site, Base44 SDK shim). Scope chosen by user: FULL rebuild — marketing site, community feed, AI assistant, owner CRM dashboard, all functional on Lovable Cloud.
+Scope: FULL rebuild — marketing site, community feed, AI assistant, owner CRM dashboard, all functional on Lovable Cloud. Round 2: "going live" polish pass driven by the user's video + screenshots.
 
-## Tasks
-- [x] Inspect archive, extract content data (menu, services, FAQ, case studies, blog, keywords, demo CRM data)
-- [x] Extract hero video + mascot image as CDN assets
-- [x] Enable Lovable Cloud
-- [x] Design system: port source CSS into src/styles.css (tokens + components)
-- [x] Data modules: src/data/content.ts, src/data/pages.ts (page registry with real routes)
-- [x] Root shell: fonts, header (mega menu), footer, mascot bot, join modal, theme toggle
-- [x] Home route with all sections
-- [x] Inner page routes: /services/$slug, /solutions/$slug, /resources/$slug, /company/$slug, /portfolio, /blog, /community
-- [x] Schema migration (leads, members, posts, likes, comments, reviews, keywords, events, page views, profiles, user_roles) + seed data
-- [x] Auth: email + Google + Lovable sign-in, /auth page, first-user-becomes-admin, /account, /dashboard (role-gated CRM)
-- [x] Benji AI chat: server route on Lovable AI Gateway with capture_lead tool
-- [x] Free tools pages (website audit, AI receptionist, ROI calculator, instant proposal, prototype builder)
-- [x] SEO: per-route head metadata; robots/sitemap regenerate after publish (below)
-- [x] Verify: build OK, typecheck 0 errors, routing tests pass, Playwright flows (lead capture → DB, community, AI chat, signup + owner role), test records cleaned up
+## Round 2 tasks (fix issues and errors; site is going live)
+- [x] Recover full reference: video frames + original zip inspected (mega menu, footer marquee, language selector, 216 tools, bot behaviors)
+- [ ] Global reveal-on-scroll observer in root (fixes invisible content on inner pages: "What is included", "How we work", cards everywhere)
+- [ ] Glass depth: remove hand-written -webkit-backdrop-filter (drops blur in Chrome), deepen glass tokens (mega 0.88, panel 0.94, nav 0.72)
+- [ ] Footer: BENJI AGENCY marquee runs (add .run + enough spans), theme button smaller, language selector added
+- [ ] Language translation: /api/public/translate on Lovable AI Gateway + client TreeWalker translation (14 languages)
+- [ ] Header: "Log in ▾" panel (Client Portal / Community / CRM ownonly / Owner Dashboard ownonly) + real lucide icons in mega menu and growth arc (no letter icons)
+- [ ] Bot behaviors: action chips speak, mic (speech recognition), wander/dizzy roaming
+- [ ] Home: "Your digital core" services heading, free-tools section + "Browse all 216 free tools", prototype section, consult strip, blog grid of 6 + "Read all articles"
+- [ ] New page /resources/all-tools: 216 AI generators (27 niches × 8 types), search, filters, show-more, AI generation modal
+- [ ] CRM/dashboard access: no users exist yet — owner must sign up first (first signup becomes admin); keep slot free
+- [ ] Verify: build OK, typecheck, routing tests, Playwright pass on key pages
+
+## Standing rules
+- Owner CRM console lives at /dashboard, role-gated by `admin`. Never an index route under a pathless layout.
+- First person to sign up becomes the owner (admin) via `handle_new_user` trigger; do not seed admin roles or sign up before the real owner.
+- Benji AI runs server-side on the Lovable AI Gateway (openai/gpt-6-astra, Responses API) through /api/public/chat.
 
 ## Open blockers
-- Real domain for robots.txt/sitemap.xml (source had YOUR-DOMAIN.com placeholder) — regenerate after publish/custom domain.
-- No user records existed to import (source had no real users; demo data inline).
+- Real domain for robots.txt/sitemap.xml — regenerate after publish/custom domain.
 - Owner admin slot intentionally left free: the first person to sign up on the live app becomes the owner.
+- Email delivery on first sign-up untested with a real inbox.
