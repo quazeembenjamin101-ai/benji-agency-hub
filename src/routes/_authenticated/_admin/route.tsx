@@ -1,7 +1,5 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { useAuth } from "@/lib/auth";
 
 export const Route = createFileRoute("/_authenticated/_admin")({
   beforeLoad: () => {
@@ -14,7 +12,3 @@ export const Route = createFileRoute("/_authenticated/_admin")({
   },
   component: () => <Outlet />,
 });
-
-// Admin shell renders the sidebar in the index route; this component only mounts children.
-void useState;
-void useAuth;
