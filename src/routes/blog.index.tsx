@@ -36,12 +36,12 @@ function BlogIndex() {
         <div className="c">
           <div className="bgrid">
             {featured.map((b) => (
-              <Link key={b.slug} to={`/blog/${b.slug}`} className="bf" style={{ ["--art" as string]: b.art, background: b.art }}>
+              <DynamicLink key={b.slug} to={`/blog/${b.slug}`} className="bf" style={{ ["--art" as string]: b.art, background: b.art }}>
                 <div>
                   <span className="tag">{b.cat}</span>
                   <h3>{b.title}</h3>
                 </div>
-              </Link>
+              </DynamicLink>
             ))}
           </div>
           <h2 style={{ margin: "50px 0 20px" }}>All articles</h2>
@@ -55,7 +55,7 @@ function BlogIndex() {
           </div>
           <div className="bg3" id="bl">
             {rest.map((b) => (
-              <Link key={b.slug} to={`/blog/${b.slug}`} className="bp rv in">
+              <DynamicLink key={b.slug} to={`/blog/${b.slug}`} className="bp rv in">
                 <div className="im" style={{ background: b.art }}>
                   <span className="tag">{b.cat}</span>
                   {b.emoji}
@@ -65,7 +65,7 @@ function BlogIndex() {
                 <div className="au">
                   <i>B</i> Benji Agency
                 </div>
-              </Link>
+              </DynamicLink>
             ))}
             {!rest.length && <p style={{ color: "var(--mute)" }}>No articles match your search.</p>}
           </div>

@@ -299,7 +299,7 @@ function AdminCrm() {
             <div className="cl3">
               {filtered.slice(0, 30).map((l, i) => (
                 <button key={l.id} className={i === 0 ? "on" : ""} onClick={() => setMsg("")}>
-                  <span className="av3">{(l.name || l.email)[0].toUpperCase()}</span>
+                  <span className="av3">{(l.name || l.email || "?").slice(0,1).toUpperCase()}</span>
                   <span>
                     <b>{l.name || l.email}</b>
                     <span style={{ fontSize: ".74rem", color: "var(--mute)", display: "block" }}>

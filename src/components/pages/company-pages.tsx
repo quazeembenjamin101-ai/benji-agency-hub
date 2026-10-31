@@ -147,8 +147,8 @@ export function AffiliatePage() {
               ["3. You earn", "You receive an agreed share of every project that closes."],
             ].map(([t, d]) => (
               <div className="card glass rv" key={t}>
-                <span className="n">{t.split(".")[0]}</span>
-                <h3>{t.slice(3)}</h3>
+                <span className="n">{(t ?? "").split(".")[0]}</span>
+                <h3>{(t ?? "").slice(3)}</h3>
                 <p>{d}</p>
               </div>
             ))}

@@ -2,9 +2,9 @@ import { supabase } from "@/integrations/supabase/client";
 import type { User } from "@supabase/supabase-js";
 
 export type LeadInput = {
-  name?: string;
+  name?: string | null;
   email: string;
-  build?: string;
+  build?: string | null;
   source: string;
   when?: string | null;
 };
