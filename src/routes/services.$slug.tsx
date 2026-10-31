@@ -1,6 +1,6 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { RichPage } from "@/components/pages/rich";
-import { findPage, pagesOfSection } from "@/data/pages";
+import { findPage } from "@/data/pages";
 
 export const Route = createFileRoute("/services/$slug")({
   loader: async ({ params }) => {
@@ -29,5 +29,3 @@ function ServicePage() {
   const { page } = Route.useLoaderData();
   return <RichPage page={page} />;
 }
-
-export const preloads = pagesOfSection; // keep tree-shaker honest about registry usage
