@@ -107,9 +107,9 @@ export function BenjiBot() {
           </div>
         )}
         <div className="cs">
-          {botActions.map(([kind, label]) => (
+          {botActions.map(([kind, label], i) => (
             <button
-              key={kind}
+              key={`${kind}-${i}`}
               onClick={() => {
                 setAnim(kind);
                 setTimeout(() => setAnim(""), 1600);
