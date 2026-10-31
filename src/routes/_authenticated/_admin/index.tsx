@@ -67,7 +67,7 @@ function AdminCrm() {
       supabase.from("keywords").select("*").order("id").limit(1000),
       supabase.from("events").select("*").order("event_at", { ascending: true }).limit(100),
     ]);
-    if (l.data) setLeads(l.data);
+    if (l.data) setLeads(l.data as unknown as Lead[]);
     if (m.data) setMembers(m.data);
     if (p.data) setPosts(p.data);
     if (r.data) setReviews(r.data);
