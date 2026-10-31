@@ -30,7 +30,7 @@ export function BenjiBot() {
     setBusy(true);
     const next: Msg[] = [...history, { role: "user", content: q }];
     setHistory(next);
-    const res = await fetch("/api/chat", {
+    const res = await fetch("/api/public/chat", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ messages: next.slice(-12) }),
