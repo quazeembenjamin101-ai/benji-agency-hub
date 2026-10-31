@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { freeTools } from "@/data/content";
-import { runAudit, runProposal, runPrototype } from "@/lib/tools.functions";
+import { runWebsiteAudit, runProposal, runPrototype } from "@/lib/tools.functions";
 
 export function ToolsIndex() {
   const [cat, setCat] = useState("All");
@@ -100,7 +100,7 @@ export function WebsiteAuditTool() {
             setErr("");
             setResult("");
             try {
-              const r = await runAudit({ data: { url: url.trim() } });
+              const r = await runWebsiteAudit({ data: { url: url.trim() } });
               setResult(r.text);
             } catch {
               setErr("The audit could not run right now. Please try again later.");
