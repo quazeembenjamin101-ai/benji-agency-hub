@@ -1,5 +1,5 @@
 import { supabase } from "@/integrations/supabase/client";
-import { useAuth } from "@/lib/auth";
+import type { User } from "@supabase/supabase-js";
 
 export type LeadInput = {
   name?: string;
@@ -10,8 +10,7 @@ export type LeadInput = {
 };
 
 /** Saves a lead. Anyone can submit; signed-in members also join the community roster. */
-export async function saveLead(o: LeadInput): Promise<boolean> {
-  const { user } = useAuthSafe();
+export async function saveLead(o: LeadInput, user: User | null): Promise<boolean> {
   const row = {
     user_id: user?.id ?? null,
     name: o.name?.slice(0, 80) ?? null,
@@ -31,10 +30,4 @@ export async function saveLead(o: LeadInput): Promise<boolean> {
     });
   }
   return true;
-}
-
-// Avoids a circular import at module load; resolves the auth context lazily.
-function useAuthSafe() {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  return useAuth();
 }
