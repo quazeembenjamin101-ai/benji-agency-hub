@@ -1,7 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { blogPosts } from "@/data/content";
 import { PageIntro } from "@/components/pages/faq-list";
+import { DynamicLink } from "@/components/site/bits";
 
 export const Route = createFileRoute("/blog/")({
   component: BlogIndex,

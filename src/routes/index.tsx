@@ -168,27 +168,27 @@ function Home() {
             sub="See the brief, the build and the outcome of each project, with a link to the live site."
           />
           <div className="wk">
-            <Link to="/portfolio/bake-her-rich" className="w rv" style={{ ["--art" as string]: "radial-gradient(circle at 70% 20%,#f59e0b66,transparent 45%),linear-gradient(135deg,#7c2d12,#1c0a05)" }}>
+            <DynamicLink to="/portfolio/bake-her-rich" className="w rv" style={{ ["--art" as string]: "radial-gradient(circle at 70% 20%,#f59e0b66,transparent 45%),linear-gradient(135deg,#7c2d12,#1c0a05)" }}>
               <div>
                 <small>Community · Skool</small>
                 <h3>Bake Her Rich</h3>
                 <p>A members-only community platform for a home-bakery brand, with onboarding, course hub and retention flows.</p>
               </div>
-            </Link>
-            <Link to="/portfolio/ai-crm-for-b2b-startups" className="w rv" style={{ ["--art" as string]: "radial-gradient(circle at 30% 20%,#22c55e88,transparent 50%),linear-gradient(135deg,#052e16,#020a05)" }}>
+            </DynamicLink>
+            <DynamicLink to="/portfolio/ai-crm-for-b2b-startups" className="w rv" style={{ ["--art" as string]: "radial-gradient(circle at 30% 20%,#22c55e88,transparent 50%),linear-gradient(135deg,#052e16,#020a05)" }}>
               <div>
                 <small>SaaS · AI</small>
                 <h3>AI CRM for B2B startups</h3>
                 <p>Pipelines, dashboards and revenue analytics in one workspace.</p>
               </div>
-            </Link>
-            <Link to="/portfolio/birthday-sale-campaign" className="w rv" style={{ ["--art" as string]: "radial-gradient(circle at 70% 70%,#38bdf866,transparent 50%),linear-gradient(135deg,#0c4a6e,#030a10)" }}>
+            </DynamicLink>
+            <DynamicLink to="/portfolio/birthday-sale-campaign" className="w rv" style={{ ["--art" as string]: "radial-gradient(circle at 70% 70%,#38bdf866,transparent 50%),linear-gradient(135deg,#0c4a6e,#030a10)" }}>
               <div>
                 <small>Email marketing</small>
                 <h3>Birthday Sale campaign</h3>
                 <p>A Klaviyo campaign built for an e-commerce brand.</p>
               </div>
-            </Link>
+            </DynamicLink>
           </div>
           <p style={{ textAlign: "center", marginTop: 34 }}>
             <Link to="/portfolio" className="btn s">
@@ -211,7 +211,7 @@ function Home() {
           />
           <div className="stk">
             {growthArc.map(([label, title, body, chips, href], i) => (
-              <ArcCard key={label} index={i} letter={label[0]} label={label} title={title} body={body} chips={chips} href={deepHref(href)} />
+              <ArcCard key={label} index={i} letter={label.slice(0, 1)} label={label} title={title} body={body} chips={chips} href={deepHref(href)} />
             ))}
           </div>
         </div>
