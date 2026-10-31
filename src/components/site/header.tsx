@@ -52,8 +52,8 @@ export function SiteHeader() {
   };
 
   const flipTheme = () => {
-    const next = document.documentElement.dataset.theme === "light" ? "dark" : "light";
-    document.documentElement.dataset.theme = next;
+    const next = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", next);
     try {
       localStorage.setItem("bt", next);
     } catch {
@@ -121,7 +121,7 @@ export function SiteHeader() {
                         <div key={heading}>
                           <h4>{heading}</h4>
                           {links.map(([title, desc]) => (
-                            <Link
+                            <DynamicLink
                               key={title}
                               className="i"
                               to={
@@ -139,12 +139,12 @@ export function SiteHeader() {
                                 <b>{title}</b>
                                 <span>{desc}</span>
                               </span>
-                            </Link>
+                            </DynamicLink>
                           ))}
                         </div>
                       ))}
                       {m.f && (
-                        <Link
+                        <DynamicLink
                           className="feat"
                           to={megaFeatHref(m)}
                           style={{ ["--art" as string]: m.f[2] }}
@@ -155,7 +155,7 @@ export function SiteHeader() {
                         >
                           <b>{m.f[0]}</b>
                           <span>{m.f[1]}</span>
-                        </Link>
+                        </DynamicLink>
                       )}
                     </div>
                   </li>

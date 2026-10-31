@@ -6,7 +6,7 @@ async function complete(prompt: string, system: string, maxOutputTokens?: number
   const result = streamText({
     model: provider.responses(LOVABLE_MODEL),
     instructions: system,
-    messages: [{ role: "user", content: prompt }],
+    prompt,
     providerOptions: { openai: responsesOptions },
     maxOutputTokens,
   });
