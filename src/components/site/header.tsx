@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
+import { useEffect, useRef, useState } from "react";
 import { menu } from "@/data/content";
 import { megaFeatHref, slugify } from "@/data/pages";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/integrations/supabase/client";
 import { useJoinModal } from "@/components/site/join-modal";
+import { DynamicLink } from "@/components/site/bits";
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
@@ -190,7 +191,7 @@ export function SiteHeader() {
                 )}
               </div>
             ) : (
-              <Link to="/auth" className="cp" onClick={navClick}>
+              <Link to="/auth" search={{ redirect: "/" }} className="cp" onClick={navClick}>
                 Sign in
               </Link>
             )}

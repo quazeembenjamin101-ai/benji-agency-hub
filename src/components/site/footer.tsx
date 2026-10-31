@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { menu } from "@/data/content";
 import { slugify } from "@/data/pages";
 import { useJoinModal } from "@/components/site/join-modal";
+import { DynamicLink } from "@/components/site/bits";
 
 export function SiteFooter() {
   const fwtRef = useRef<HTMLDivElement>(null);
@@ -20,8 +21,8 @@ export function SiteFooter() {
   }, []);
 
   const flipTheme = () => {
-    const next = document.documentElement.dataset.theme === "light" ? "dark" : "light";
-    document.documentElement.dataset.theme = next;
+    const next = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", next);
     try {
       localStorage.setItem("bt", next);
     } catch {
@@ -53,10 +54,8 @@ export function SiteFooter() {
                 ) : m.t === "Blog" ? (
                   <Link to="/blog">Blog</Link>
                 ) : (
-                  (m.c ?? [])[0][1].slice(0, 4).map(([title]) => (
-                    <Link key={title} to={`/${sectionFor(m.t)}/${slugify(title)}`}>
-                      {title}
-                    </Link>
+                  (m.c ?? []).map(([group]) => (
+                    <div key={group} />
                   ))
                 )}
               </div>
