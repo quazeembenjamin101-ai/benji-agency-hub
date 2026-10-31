@@ -41,6 +41,7 @@ const push = (e: PageEntry) => {
 for (const m of menu) {
   if (!m.c) continue;
   const section = sectionOf[m.t];
+  if (!section) continue;
   for (const [group, links] of m.c) {
     for (const [title, desc] of links) {
       if (section === "community") continue; // all community links live at /community

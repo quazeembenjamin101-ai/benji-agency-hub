@@ -1,4 +1,34 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "@tanstack/react-router";
+
+/**
+ * Link wrapper for runtime-built paths (e.g. `/services/${slug}`).
+ * TanStack's typed Link only accepts literal paths, so these keep SPA
+ * navigation through a single localized cast.
+ */
+const AnyLink = Link as unknown as React.FC<
+  React.ComponentProps<typeof Link> & { to: string; params?: Record<string, string> }
+>;
+
+export function DynamicLink({
+  to,
+  className,
+  style,
+  children,
+  onClick,
+}: {
+  to: string;
+  className?: string;
+  style?: React.CSSProperties;
+  children: React.ReactNode;
+  onClick?: () => void;
+}) {
+  return (
+    <AnyLink to={to} className={className} style={style} onClick={onClick}>
+      {children}
+    </AnyLink>
+  );
+}
 
 /** Reveal-on-scroll: observes `.rv` elements inside the returned ref. */
 export function useReveal<T extends HTMLElement>() {
