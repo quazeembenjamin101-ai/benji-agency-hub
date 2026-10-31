@@ -10,14 +10,20 @@ import {
   RoiCalculator,
   GrowthQuiz,
 } from "@/components/pages/tools";
-import { faqs } from "@/data/content";
-import { findPage, type Section } from "@/data/pages";
+import { faqs, freeTools } from "@/data/content";
+import { findPage, slugify, type Section } from "@/data/pages";
+
+const toolBySlug = new Map(freeTools.map(([name, tag, desc, detail]) => [slugify(name), { name, tag, desc, detail }]));
 
 export const Route = createFileRoute("/resources/$slug")({
   loader: async ({ params }) => {
     const page = findPage("resources", params.slug);
-    if (!page) throw notFound();
-    return { slug: params.slug, page };
+    const tool = toolBySlug.get(params.slug);
+    if (!page && !tool) throw notFound();
+    return {
+      slug: params.slug,
+      page: page ?? { slug: params.slug, title: tool!.name, desc: tool!.detail, section: "resources" as Section },
+    };
   },
   head: ({ loaderData }) => ({
     meta: [

@@ -14,6 +14,8 @@ import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as PortfolioIndexRouteImport } from './routes/portfolio.index'
 import { Route as PortfolioSlugRouteImport } from './routes/portfolio.$slug'
+import { Route as ResourcesSlugRouteImport } from './routes/resources.$slug'
+import { Route as ResourcesFreeToolsRouteImport } from './routes/resources.free-tools'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as SolutionsIndexRouteImport } from './routes/solutions.index'
@@ -43,6 +45,16 @@ const PortfolioIndexRoute = PortfolioIndexRouteImport.update({
 const PortfolioSlugRoute = PortfolioSlugRouteImport.update({
   id: '/portfolio/$slug',
   path: '/portfolio/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesSlugRoute = ResourcesSlugRouteImport.update({
+  id: '/resources/$slug',
+  path: '/resources/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesFreeToolsRoute = ResourcesFreeToolsRouteImport.update({
+  id: '/resources/free-tools',
+  path: '/resources/free-tools',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesIndexRoute = ServicesIndexRouteImport.update({
@@ -75,6 +87,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/portfolio/$slug': typeof PortfolioSlugRoute
+  '/resources/$slug': typeof ResourcesSlugRoute
+  '/resources/free-tools': typeof ResourcesFreeToolsRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -87,6 +101,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/portfolio/$slug': typeof PortfolioSlugRoute
+  '/resources/$slug': typeof ResourcesSlugRoute
+  '/resources/free-tools': typeof ResourcesFreeToolsRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/blog': typeof BlogIndexRoute
@@ -100,6 +116,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/portfolio/$slug': typeof PortfolioSlugRoute
+  '/resources/$slug': typeof ResourcesSlugRoute
+  '/resources/free-tools': typeof ResourcesFreeToolsRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -114,6 +132,8 @@ export interface FileRouteTypes {
     | '/'
     | '/blog/$slug'
     | '/portfolio/$slug'
+    | '/resources/$slug'
+    | '/resources/free-tools'
     | '/services/$slug'
     | '/solutions/$slug'
     | '/blog/'
@@ -126,6 +146,8 @@ export interface FileRouteTypes {
     | '/'
     | '/blog/$slug'
     | '/portfolio/$slug'
+    | '/resources/$slug'
+    | '/resources/free-tools'
     | '/services/$slug'
     | '/solutions/$slug'
     | '/blog'
@@ -138,6 +160,8 @@ export interface FileRouteTypes {
     | '/'
     | '/blog/$slug'
     | '/portfolio/$slug'
+    | '/resources/$slug'
+    | '/resources/free-tools'
     | '/services/$slug'
     | '/solutions/$slug'
     | '/blog/'
@@ -151,6 +175,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlogSlugRoute: typeof BlogSlugRoute
   PortfolioSlugRoute: typeof PortfolioSlugRoute
+  ResourcesSlugRoute: typeof ResourcesSlugRoute
+  ResourcesFreeToolsRoute: typeof ResourcesFreeToolsRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   SolutionsSlugRoute: typeof SolutionsSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
@@ -197,6 +223,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PortfolioSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/resources/$slug': {
+      id: '/resources/$slug'
+      path: '/resources/$slug'
+      fullPath: '/resources/$slug'
+      preLoaderRoute: typeof ResourcesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources/free-tools': {
+      id: '/resources/free-tools'
+      path: '/resources/free-tools'
+      fullPath: '/resources/free-tools'
+      preLoaderRoute: typeof ResourcesFreeToolsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/': {
       id: '/services/'
       path: '/services'
@@ -239,6 +279,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlogSlugRoute: BlogSlugRoute,
   PortfolioSlugRoute: PortfolioSlugRoute,
+  ResourcesSlugRoute: ResourcesSlugRoute,
+  ResourcesFreeToolsRoute: ResourcesFreeToolsRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   SolutionsSlugRoute: SolutionsSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
