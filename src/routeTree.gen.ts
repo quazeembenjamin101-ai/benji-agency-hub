@@ -12,8 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as CompanyIndexRouteImport } from './routes/company.index'
+import { Route as CompanySlugRouteImport } from './routes/company.$slug'
 import { Route as PortfolioIndexRouteImport } from './routes/portfolio.index'
 import { Route as PortfolioSlugRouteImport } from './routes/portfolio.$slug'
+import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
 import { Route as ResourcesSlugRouteImport } from './routes/resources.$slug'
 import { Route as ResourcesFreeToolsRouteImport } from './routes/resources.free-tools'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
@@ -37,6 +40,16 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CompanyIndexRoute = CompanyIndexRouteImport.update({
+  id: '/company/',
+  path: '/company/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompanySlugRoute = CompanySlugRouteImport.update({
+  id: '/company/$slug',
+  path: '/company/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PortfolioIndexRoute = PortfolioIndexRouteImport.update({
   id: '/portfolio/',
   path: '/portfolio/',
@@ -45,6 +58,11 @@ const PortfolioIndexRoute = PortfolioIndexRouteImport.update({
 const PortfolioSlugRoute = PortfolioSlugRouteImport.update({
   id: '/portfolio/$slug',
   path: '/portfolio/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesIndexRoute = ResourcesIndexRouteImport.update({
+  id: '/resources/',
+  path: '/resources/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResourcesSlugRoute = ResourcesSlugRouteImport.update({
@@ -86,13 +104,16 @@ const ApiPublicChatRoute = ApiPublicChatRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/company/$slug': typeof CompanySlugRoute
   '/portfolio/$slug': typeof PortfolioSlugRoute
   '/resources/$slug': typeof ResourcesSlugRoute
   '/resources/free-tools': typeof ResourcesFreeToolsRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/blog/': typeof BlogIndexRoute
+  '/company/': typeof CompanyIndexRoute
   '/portfolio/': typeof PortfolioIndexRoute
+  '/resources/': typeof ResourcesIndexRoute
   '/services/': typeof ServicesIndexRoute
   '/solutions/': typeof SolutionsIndexRoute
   '/api/public/chat': typeof ApiPublicChatRoute
@@ -100,13 +121,16 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/company/$slug': typeof CompanySlugRoute
   '/portfolio/$slug': typeof PortfolioSlugRoute
   '/resources/$slug': typeof ResourcesSlugRoute
   '/resources/free-tools': typeof ResourcesFreeToolsRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/blog': typeof BlogIndexRoute
+  '/company': typeof CompanyIndexRoute
   '/portfolio': typeof PortfolioIndexRoute
+  '/resources': typeof ResourcesIndexRoute
   '/services': typeof ServicesIndexRoute
   '/solutions': typeof SolutionsIndexRoute
   '/api/public/chat': typeof ApiPublicChatRoute
@@ -115,13 +139,16 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/company/$slug': typeof CompanySlugRoute
   '/portfolio/$slug': typeof PortfolioSlugRoute
   '/resources/$slug': typeof ResourcesSlugRoute
   '/resources/free-tools': typeof ResourcesFreeToolsRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/blog/': typeof BlogIndexRoute
+  '/company/': typeof CompanyIndexRoute
   '/portfolio/': typeof PortfolioIndexRoute
+  '/resources/': typeof ResourcesIndexRoute
   '/services/': typeof ServicesIndexRoute
   '/solutions/': typeof SolutionsIndexRoute
   '/api/public/chat': typeof ApiPublicChatRoute
@@ -131,13 +158,16 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/blog/$slug'
+    | '/company/$slug'
     | '/portfolio/$slug'
     | '/resources/$slug'
     | '/resources/free-tools'
     | '/services/$slug'
     | '/solutions/$slug'
     | '/blog/'
+    | '/company/'
     | '/portfolio/'
+    | '/resources/'
     | '/services/'
     | '/solutions/'
     | '/api/public/chat'
@@ -145,13 +175,16 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/blog/$slug'
+    | '/company/$slug'
     | '/portfolio/$slug'
     | '/resources/$slug'
     | '/resources/free-tools'
     | '/services/$slug'
     | '/solutions/$slug'
     | '/blog'
+    | '/company'
     | '/portfolio'
+    | '/resources'
     | '/services'
     | '/solutions'
     | '/api/public/chat'
@@ -159,13 +192,16 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/blog/$slug'
+    | '/company/$slug'
     | '/portfolio/$slug'
     | '/resources/$slug'
     | '/resources/free-tools'
     | '/services/$slug'
     | '/solutions/$slug'
     | '/blog/'
+    | '/company/'
     | '/portfolio/'
+    | '/resources/'
     | '/services/'
     | '/solutions/'
     | '/api/public/chat'
@@ -174,13 +210,16 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlogSlugRoute: typeof BlogSlugRoute
+  CompanySlugRoute: typeof CompanySlugRoute
   PortfolioSlugRoute: typeof PortfolioSlugRoute
   ResourcesSlugRoute: typeof ResourcesSlugRoute
   ResourcesFreeToolsRoute: typeof ResourcesFreeToolsRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   SolutionsSlugRoute: typeof SolutionsSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
+  CompanyIndexRoute: typeof CompanyIndexRoute
   PortfolioIndexRoute: typeof PortfolioIndexRoute
+  ResourcesIndexRoute: typeof ResourcesIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
   SolutionsIndexRoute: typeof SolutionsIndexRoute
   ApiPublicChatRoute: typeof ApiPublicChatRoute
@@ -209,6 +248,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/company/': {
+      id: '/company/'
+      path: '/company'
+      fullPath: '/company/'
+      preLoaderRoute: typeof CompanyIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/company/$slug': {
+      id: '/company/$slug'
+      path: '/company/$slug'
+      fullPath: '/company/$slug'
+      preLoaderRoute: typeof CompanySlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/portfolio/': {
       id: '/portfolio/'
       path: '/portfolio'
@@ -221,6 +274,13 @@ declare module '@tanstack/react-router' {
       path: '/portfolio/$slug'
       fullPath: '/portfolio/$slug'
       preLoaderRoute: typeof PortfolioSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources/': {
+      id: '/resources/'
+      path: '/resources'
+      fullPath: '/resources/'
+      preLoaderRoute: typeof ResourcesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/resources/$slug': {
@@ -278,13 +338,16 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlogSlugRoute: BlogSlugRoute,
+  CompanySlugRoute: CompanySlugRoute,
   PortfolioSlugRoute: PortfolioSlugRoute,
   ResourcesSlugRoute: ResourcesSlugRoute,
   ResourcesFreeToolsRoute: ResourcesFreeToolsRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   SolutionsSlugRoute: SolutionsSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
+  CompanyIndexRoute: CompanyIndexRoute,
   PortfolioIndexRoute: PortfolioIndexRoute,
+  ResourcesIndexRoute: ResourcesIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,
   SolutionsIndexRoute: SolutionsIndexRoute,
   ApiPublicChatRoute: ApiPublicChatRoute,
