@@ -343,6 +343,7 @@ const QUIZ: [string, string[]][] = [
 export function GrowthQuiz() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
+  const stepData = QUIZ[Math.min(step, QUIZ.length - 1)];
   const done = step >= QUIZ.length;
   const plan = done
     ? answers.includes("No website yet")
@@ -361,8 +362,8 @@ export function GrowthQuiz() {
             <h3>
               Question {step + 1} of {QUIZ.length}
             </h3>
-            <p>{QUIZ[step][0]}</p>
-            {QUIZ[step][1].map((a) => (
+            <p>{stepData[0]}</p>
+            {stepData[1].map((a) => (
               <button
                 key={a}
                 className="btn s"

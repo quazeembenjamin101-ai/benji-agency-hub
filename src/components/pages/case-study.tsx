@@ -1,8 +1,8 @@
-import { Link } from "@tanstack/react-router";
 import { caseStudies } from "@/data/content";
 import { caseStudySlugs } from "@/data/pages";
 import { PageIntro } from "./faq-list";
 import { useJoinModal } from "@/components/site/join-modal";
+import { DynamicLink } from "@/components/site/bits";
 
 export function CaseStudyPage({ slug }: { slug: string }) {
   const c = caseStudies[slug];
@@ -115,13 +115,17 @@ export function CaseStudyPage({ slug }: { slug: string }) {
         <div className="c">
           <h2 style={{ textAlign: "center", marginBottom: 26 }}>More case studies</h2>
           <div className="grid3">
-            {more.map((q) => (
-              <Link to={`/portfolio/${q}`} className="card glass" key={q}>
-                <span className="n">→</span>
-                <h3>{caseStudies[q].t}</h3>
-                <p>{caseStudies[q].d}</p>
-              </Link>
-            ))}
+            {more.map((q) => {
+              const cm = caseStudies[q];
+              if (!cm) return null;
+              return (
+                <DynamicLink to={`/portfolio/${q}`} className="card glass" key={q}>
+                  <span className="n">→</span>
+                  <h3>{cm.t}</h3>
+                  <p>{cm.d}</p>
+                </DynamicLink>
+              );
+            })}
           </div>
         </div>
       </section>

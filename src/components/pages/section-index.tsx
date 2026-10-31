@@ -1,8 +1,8 @@
-import { Link } from "@tanstack/react-router";
 import { caseStudies } from "@/data/content";
 import { caseStudySlugs, pagesOfSection, type Section } from "@/data/pages";
 import { PageIntro } from "./faq-list";
 import { useJoinModal } from "@/components/site/join-modal";
+import { DynamicLink } from "@/components/site/bits";
 
 export function SectionIndex({ section }: { section: Section }) {
   const join = useJoinModal();
@@ -19,14 +19,15 @@ export function SectionIndex({ section }: { section: Section }) {
             <div className="wk" style={{ minHeight: "auto", gridTemplateColumns: "1fr 1fr" }}>
               {caseStudySlugs.map((slug) => {
                 const c = caseStudies[slug];
+                if (!c) return null;
                 return (
-                  <Link key={slug} to={`/portfolio/${slug}`} className="w rv" style={{ minHeight: 260, ["--art" as string]: c.art ?? "radial-gradient(circle at 70% 25%,#22c55e88,transparent 55%),linear-gradient(135deg,#052e16,#030a06)" }}>
+                  <DynamicLink key={slug} to={`/portfolio/${slug}`} className="w rv" style={{ minHeight: 260, ["--art" as string]: c.art ?? "radial-gradient(circle at 70% 25%,#22c55e88,transparent 55%),linear-gradient(135deg,#052e16,#030a06)" }}>
                     <div>
                       <small>{c.cat}</small>
                       <h3>{c.t}</h3>
                       <p>{c.d}</p>
                     </div>
-                  </Link>
+                  </DynamicLink>
                 );
               })}
             </div>
@@ -52,11 +53,11 @@ export function SectionIndex({ section }: { section: Section }) {
         <div className="c">
           <div className="grid3">
             {pages.map((p) => (
-              <Link key={p.slug} to={`/${section}/${p.slug}`} className="card glass rv">
+              <DynamicLink key={p.slug} to={`/${section}/${p.slug}`} className="card glass rv">
                 <span className="n">→</span>
                 <h3>{p.title}</h3>
                 <p>{p.desc}</p>
-              </Link>
+              </DynamicLink>
             ))}
           </div>
           <div className="cta glass rv" style={{ marginTop: 50 }}>
