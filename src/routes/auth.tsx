@@ -44,7 +44,7 @@ function AuthPage() {
       password,
       options: {
         emailRedirectTo: window.location.origin + target,
-        data: name ? { display_name: name.slice(0, 80) } : undefined,
+        ...(name ? { data: { display_name: name.slice(0, 80) } } : {}),
       },
     });
     setBusy(false);

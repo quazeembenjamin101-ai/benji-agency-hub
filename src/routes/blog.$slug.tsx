@@ -29,7 +29,7 @@ function BlogPostPage() {
     <>
       <section className="pgh">
         <div className="c art">
-          <Link to="/blog" style={{ color: "var(--g2)" }}>
+          <DynamicLink to="/blog" style={{ color: "var(--g2)" }}>
             ← All articles
           </DynamicLink>
           <div className="cv" style={{ background: post.art, marginTop: 20, aspectRatio: "16/8" }}>
@@ -53,7 +53,7 @@ function BlogPostPage() {
           <h2 style={{ margin: "50px 0 20px" }}>Keep reading</h2>
           <div className="grid3">
             {more.map((b) => (
-              <Link key={b.slug} to={`/blog/${b.slug}`} className="card glass">
+              <DynamicLink key={b.slug} to={`/blog/${b.slug}`} className="card glass">
                 <h3>{b.title}</h3>
                 <p>{b.excerpt}</p>
               </DynamicLink>
