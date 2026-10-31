@@ -9,8 +9,8 @@ import {
   services,
   timeline,
 } from "@/data/content";
-import { slugify } from "@/data/pages";
-import { ArcCard, Counter, SectionHead, useReveal } from "@/components/site/bits";
+import { slugify, deepHref } from "@/data/pages";
+import { ArcCard, Counter, DynamicLink, SectionHead, useReveal } from "@/components/site/bits";
 import { useJoinModal } from "@/components/site/join-modal";
 import { TestimonialsBlock } from "@/components/pages/testimonials";
 import { FaqList } from "@/components/pages/faq-list";
@@ -146,11 +146,11 @@ function Home() {
           />
           <div className="grid3 sv">
             {services.map(([a, b], i) => (
-              <Link key={a} to={`/services/${slugify(a)}`} className="card glass rv">
+              <DynamicLink key={a} to={`/services/${slugify(a)}`} className="card glass rv">
                 <span className="n">{String(i + 1).padStart(2, "0")}</span>
                 <h3>{a}</h3>
                 <p>{b}</p>
-              </Link>
+              </DynamicLink>
             ))}
           </div>
         </div>
@@ -211,7 +211,7 @@ function Home() {
           />
           <div className="stk">
             {growthArc.map(([label, title, body, chips, href], i) => (
-              <ArcCard key={label} index={i} letter={label[0]} label={label} title={title} body={body} chips={chips} href={href} />
+              <ArcCard key={label} index={i} letter={label[0]} label={label} title={title} body={body} chips={chips} href={deepHref(href)} />
             ))}
           </div>
         </div>
@@ -230,12 +230,12 @@ function Home() {
           />
           <div className="bl" style={{ display: "grid", gap: 14, maxWidth: 820, margin: "auto" }}>
             {blogPosts.slice(0, 3).map((b) => (
-              <Link key={b.slug} to={`/blog/${b.slug}`} className="glass rv">
+              <DynamicLink key={b.slug} to={`/blog/${b.slug}`} className="glass rv">
                 <small>
                   {b.cat.toUpperCase()} · {b.emoji}
                 </small>
                 <b>{b.title}</b>
-              </Link>
+              </DynamicLink>
             ))}
           </div>
         </div>
