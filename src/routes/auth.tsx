@@ -6,11 +6,6 @@ import { useAuth } from "@/lib/auth";
 
 export const Route = createFileRoute("/auth")({
   validateSearch: (s: Record<string, unknown>) => ({ redirect: (s.redirect as string) || "/" }),
-  beforeLoad: ({ context, search }) => {
-    // Handled client-side below; SSR renders the form.
-    void context;
-    void search;
-  },
   component: AuthPage,
   head: () => ({
     meta: [
