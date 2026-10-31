@@ -32,7 +32,7 @@ export function JoinModalProvider({ children }: { children: ReactNode }) {
     setBusy(true);
     const d = Object.fromEntries(new FormData(e.currentTarget)) as Record<string, string>;
     const ok = await saveLead(
-      { name: d.name, email: d.email, build: d.build, source, when: d.when || null },
+      { name: d["name"], email: d["email"] ?? "", build: d["build"], source, when: d["when"] || null },
       user,
     );
     setBusy(false);

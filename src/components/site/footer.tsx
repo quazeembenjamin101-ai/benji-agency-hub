@@ -50,12 +50,14 @@ export function SiteFooter() {
               <div key={m.t}>
                 <h4>{m.t}</h4>
                 {m.t === "Portfolio" ? (
-                  <Link to="/portfolio">Portfolio</Link>
+                  <Link to="/portfolio">Case Studies</Link>
                 ) : m.t === "Blog" ? (
                   <Link to="/blog">Blog</Link>
                 ) : (
-                  (m.c ?? []).map(([group]) => (
-                    <div key={group} />
+                  (m.c ?? [])[0]?.[1].slice(0, 4).map(([title]) => (
+                    <DynamicLink key={title} to={`/${sectionFor(m.t)}/${slugify(title)}`}>
+                      {title}
+                    </DynamicLink>
                   ))
                 )}
               </div>

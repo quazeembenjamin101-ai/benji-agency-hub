@@ -24,14 +24,14 @@ export function TestimonialsBlock({ compact = false }: { compact?: boolean }) {
     const f = e.currentTarget;
     const d = Object.fromEntries(new FormData(f)) as Record<string, string>;
     const { error } = await supabase.from("reviews").insert({
-      name: d.name,
-      company: d.co || null,
-      rating: Number(d.r) || 5,
-      text: d.t,
+      name: d["name"] ?? "",
+      company: d["co"] || null,
+      rating: Number(d["r"]) || 5,
+      text: d["t"] ?? "",
     });
     if (!error) {
       setReviews((r) => [
-        { id: crypto.randomUUID(), name: d.name, company: d.co || null, rating: Number(d.r) || 5, text: d.t },
+        { id: crypto.randomUUID(), name: d["name"] ?? "Anonymous", company: d["co"] || null, rating: Number(d["r"]) || 5, text: d["t"] ?? "" },
         ...r,
       ]);
       f.reset();
@@ -50,7 +50,7 @@ export function TestimonialsBlock({ compact = false }: { compact?: boolean }) {
           {visible.length ? (
             visible.map((r) => (
               <div className="card glass" key={r.id}>
-                <div className="av">{(r.name || "?")[0].toUpperCase()}</div>
+                <div className="av">{(r.name || "?")[0]?.toUpperCase()}</div>
                 <span className="st">{"★".repeat(Math.max(1, Math.min(5, r.rating || 5)))}</span>
                 <q>{r.text}</q>
                 <b>
