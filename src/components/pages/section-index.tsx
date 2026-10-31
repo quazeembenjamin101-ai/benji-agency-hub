@@ -43,11 +43,12 @@ export function SectionIndex({ section }: { section: Section }) {
     resources: "Resources",
     company: "Company",
   };
+  const sectionTitle = heading[section] ?? "Pages";
   return (
     <>
       <PageIntro
-        title={heading[section]}
-        desc={`Everything under ${heading[section].toLowerCase()} — pick a topic to see how we work and what you get.`}
+        title={sectionTitle}
+        desc={`Everything under ${sectionTitle.toLowerCase()} — pick a topic to see how we work and what you get.`}
       />
       <section>
         <div className="c">

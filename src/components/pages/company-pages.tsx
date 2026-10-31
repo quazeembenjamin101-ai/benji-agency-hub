@@ -7,15 +7,18 @@ import { PageIntro } from "./faq-list";
 export function TeamGrid() {
   return (
     <div className="tm">
-      {team.map(([initials, role]) => (
-        <div className="card glass rv" key={initials}>
-          <div className="av" style={{ width: 90, height: 90, margin: "0 auto 14px" }}>
-            {initials}
+      {team.map(([initials, role]) => {
+        const [person, title] = role.split(", ");
+        return (
+          <div className="card glass rv" key={initials}>
+            <div className="av" style={{ width: 90, height: 90, margin: "0 auto 14px" }}>
+              {initials}
+            </div>
+            <h3>{person ?? role}</h3>
+            <small style={{ color: "var(--mute)" }}>{title ?? ""}</small>
           </div>
-          <h3>{role.split(",")[0]}</h3>
-          <small style={{ color: "var(--mute)" }}>{role.split(", ")[1] ?? ""}</small>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }

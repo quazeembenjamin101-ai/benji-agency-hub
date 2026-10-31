@@ -177,9 +177,9 @@ export function SiteHeader() {
                         My account
                       </Link>
                       {isAdmin && (
-                        <Link to="/admin" className="btn p" onClick={() => setAcctOpen(false)}>
-                          Owner console
-                        </Link>
+                        <DynamicLink to="/admin" className="btn p">
+                          <span onClick={() => setAcctOpen(false)}>Owner console</span>
+                        </DynamicLink>
                       )}
                     </div>
                     <div className="ab" style={{ marginTop: 8 }}>

@@ -343,7 +343,7 @@ const QUIZ: [string, string[]][] = [
 export function GrowthQuiz() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
-  const stepData = QUIZ[Math.min(step, QUIZ.length - 1)];
+  const stepData: [string, string[]] = QUIZ[step] ?? QUIZ[0]!;
   const done = step >= QUIZ.length;
   const plan = done
     ? answers.includes("No website yet")

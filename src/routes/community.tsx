@@ -40,7 +40,7 @@ export const Route = createFileRoute("/community")({
 });
 
 const av = (n?: string | null) => (
-  <div className="av">{(n || "?")[0].toUpperCase()}</div>
+  <div className="av">{(n || "?").slice(0, 1).toUpperCase()}</div>
 );
 
 function CommunityPage() {

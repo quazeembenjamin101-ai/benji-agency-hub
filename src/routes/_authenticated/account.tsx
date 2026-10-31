@@ -92,10 +92,10 @@ function AccountPage() {
               <p>Projects, approvals, invoices and files — coming with your first project.</p>
             </div>
             {isAdmin && (
-              <Link to="/admin" className="card glass">
+              <a href="/admin" className="card glass">
                 <h3>Owner dashboard</h3>
                 <p>Leads, pipeline, bookings, keywords and analytics.</p>
-              </Link>
+              </a>
             )}
           </div>
           <div style={{ marginTop: 24 }}>
