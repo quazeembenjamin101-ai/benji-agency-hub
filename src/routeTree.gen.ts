@@ -14,6 +14,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CommunityRouteImport } from './routes/community'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as AuthenticatedAdminRouteRouteImport } from './routes/_authenticated/_admin/route'
 import { Route as AuthenticatedAccountRouteImport } from './routes/_authenticated/account'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
@@ -28,6 +29,7 @@ import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as SolutionsIndexRouteImport } from './routes/solutions.index'
 import { Route as SolutionsSlugRouteImport } from './routes/solutions.$slug'
+import { Route as AuthenticatedAdminDashboardRouteImport } from './routes/_authenticated/_admin/dashboard'
 import { Route as ApiPublicChatRouteImport } from './routes/api/public/chat'
 
 const IndexRoute = IndexRouteImport.update({
@@ -53,6 +55,10 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAdminRouteRoute = AuthenticatedAdminRouteRouteImport.update({
+  id: '/_admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedAccountRoute = AuthenticatedAccountRouteImport.update({
   id: '/account',
@@ -124,6 +130,12 @@ const SolutionsSlugRoute = SolutionsSlugRouteImport.update({
   path: '/solutions/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAdminDashboardRoute =
+  AuthenticatedAdminDashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
 const ApiPublicChatRoute = ApiPublicChatRouteImport.update({
   id: '/api/public/chat',
   path: '/api/public/chat',
@@ -149,6 +161,7 @@ export interface FileRoutesByFullPath {
   '/resources/': typeof ResourcesIndexRoute
   '/services/': typeof ServicesIndexRoute
   '/solutions/': typeof SolutionsIndexRoute
+  '/dashboard': typeof AuthenticatedAdminDashboardRoute
   '/api/public/chat': typeof ApiPublicChatRoute
 }
 export interface FileRoutesByTo {
@@ -170,6 +183,7 @@ export interface FileRoutesByTo {
   '/resources': typeof ResourcesIndexRoute
   '/services': typeof ServicesIndexRoute
   '/solutions': typeof SolutionsIndexRoute
+  '/dashboard': typeof AuthenticatedAdminDashboardRoute
   '/api/public/chat': typeof ApiPublicChatRoute
 }
 export interface FileRoutesById {
@@ -179,6 +193,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/community': typeof CommunityRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/_authenticated/_admin': typeof AuthenticatedAdminRouteRouteWithChildren
   '/_authenticated/account': typeof AuthenticatedAccountRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/company/$slug': typeof CompanySlugRoute
@@ -193,6 +208,7 @@ export interface FileRoutesById {
   '/resources/': typeof ResourcesIndexRoute
   '/services/': typeof ServicesIndexRoute
   '/solutions/': typeof SolutionsIndexRoute
+  '/_authenticated/_admin/dashboard': typeof AuthenticatedAdminDashboardRoute
   '/api/public/chat': typeof ApiPublicChatRoute
 }
 export interface FileRouteTypes {
@@ -216,6 +232,7 @@ export interface FileRouteTypes {
     | '/resources/'
     | '/services/'
     | '/solutions/'
+    | '/dashboard'
     | '/api/public/chat'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -237,6 +254,7 @@ export interface FileRouteTypes {
     | '/resources'
     | '/services'
     | '/solutions'
+    | '/dashboard'
     | '/api/public/chat'
   id:
     | '__root__'
@@ -245,6 +263,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/community'
     | '/reset-password'
+    | '/_authenticated/_admin'
     | '/_authenticated/account'
     | '/blog/$slug'
     | '/company/$slug'
@@ -259,6 +278,7 @@ export interface FileRouteTypes {
     | '/resources/'
     | '/services/'
     | '/solutions/'
+    | '/_authenticated/_admin/dashboard'
     | '/api/public/chat'
   fileRoutesById: FileRoutesById
 }
@@ -320,6 +340,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/reset-password'
       preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/_admin': {
+      id: '/_authenticated/_admin'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedAdminRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/account': {
       id: '/_authenticated/account'
@@ -419,6 +446,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SolutionsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/_admin/dashboard': {
+      id: '/_authenticated/_admin/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedAdminDashboardRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
     '/api/public/chat': {
       id: '/api/public/chat'
       path: '/api/public/chat'
@@ -429,11 +463,27 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthenticatedAdminRouteRouteChildren {
+  AuthenticatedAdminDashboardRoute: typeof AuthenticatedAdminDashboardRoute
+}
+
+const AuthenticatedAdminRouteRouteChildren: AuthenticatedAdminRouteRouteChildren =
+  {
+    AuthenticatedAdminDashboardRoute: AuthenticatedAdminDashboardRoute,
+  }
+
+const AuthenticatedAdminRouteRouteWithChildren =
+  AuthenticatedAdminRouteRoute._addFileChildren(
+    AuthenticatedAdminRouteRouteChildren,
+  )
+
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRouteRoute: typeof AuthenticatedAdminRouteRouteWithChildren
   AuthenticatedAccountRoute: typeof AuthenticatedAccountRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRouteRoute: AuthenticatedAdminRouteRouteWithChildren,
   AuthenticatedAccountRoute: AuthenticatedAccountRoute,
 }
 

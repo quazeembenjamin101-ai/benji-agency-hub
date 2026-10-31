@@ -92,7 +92,7 @@ function AccountPage() {
               <p>Projects, approvals, invoices and files — coming with your first project.</p>
             </div>
             {isAdmin && (
-              <a href="/admin" className="card glass">
+              <a href="/dashboard" className="card glass">
                 <h3>Owner dashboard</h3>
                 <p>Leads, pipeline, bookings, keywords and analytics.</p>
               </a>

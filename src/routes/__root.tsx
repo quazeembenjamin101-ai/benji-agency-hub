@@ -134,7 +134,7 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   // The marketing chrome wraps the whole site except the owner console and account area.
-  const chrome = !pathname.startsWith("/admin") && !pathname.startsWith("/account");
+  const chrome = !pathname.startsWith("/dashboard") && !pathname.startsWith("/account");
 
   return (
     <QueryClientProvider client={queryClient}>
