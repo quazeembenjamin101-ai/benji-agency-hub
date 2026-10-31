@@ -5,7 +5,7 @@ import { lovable } from "@/integrations/lovable";
 import { useAuth } from "@/lib/auth";
 
 export const Route = createFileRoute("/auth")({
-  validateSearch: (s: Record<string, unknown>) => ({ redirect: (s.redirect as string) || "/" }),
+  validateSearch: (s: Record<string, unknown>) => ({ redirect: s["redirect"] as string }),
   component: AuthPage,
   head: () => ({
     meta: [
