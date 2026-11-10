@@ -4,6 +4,7 @@ Scope: FULL rebuild — marketing site, community feed, AI assistant, owner CRM 
 
 ## Round 2 tasks (fix issues and errors; site is going live)
 - [x] Recover full reference: video frames + original zip inspected (mega menu, footer marquee, language selector, 216 tools, bot behaviors)
+- [ ] Inspect the latest uploaded HTML, JSON, and repository archive against the current site; preserve all relevant missing content and behavior.
 - [ ] Global reveal-on-scroll observer in root (fixes invisible content on inner pages: "What is included", "How we work", cards everywhere)
 - [ ] Glass depth: remove hand-written -webkit-backdrop-filter (drops blur in Chrome), deepen glass tokens (mega 0.88, panel 0.94, nav 0.72)
 - [ ] Footer: BENJI AGENCY marquee runs (add .run + enough spans), theme button smaller, language selector added
