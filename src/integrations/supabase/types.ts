@@ -140,6 +140,242 @@ export type Database = {
         }
         Relationships: []
       }
+      pod_audit: {
+        Row: {
+          action: string
+          created_at: string
+          details: string
+          id: string
+          resource_id: string | null
+          resource_name: string
+          resource_type: string
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          details?: string
+          id?: string
+          resource_id?: string | null
+          resource_name?: string
+          resource_type: string
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          details?: string
+          id?: string
+          resource_id?: string | null
+          resource_name?: string
+          resource_type?: string
+        }
+        Relationships: []
+      }
+      pod_categories: {
+        Row: {
+          created_at: string
+          description: string
+          id: string
+          name: string
+          slug: string
+          sort_order: number
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string
+          id?: string
+          name: string
+          slug: string
+          sort_order?: number
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          id?: string
+          name?: string
+          slug?: string
+          sort_order?: number
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      pod_events: {
+        Row: {
+          created_at: string
+          details: Json
+          device: string
+          event_type: string
+          id: string
+          resource_slug: string
+        }
+        Insert: {
+          created_at?: string
+          details?: Json
+          device?: string
+          event_type: string
+          id?: string
+          resource_slug?: string
+        }
+        Update: {
+          created_at?: string
+          details?: Json
+          device?: string
+          event_type?: string
+          id?: string
+          resource_slug?: string
+        }
+        Relationships: []
+      }
+      pod_experts: {
+        Row: {
+          bio: string
+          company: string
+          consent: string
+          created_at: string
+          id: string
+          location: string
+          name: string
+          portfolio_url: string
+          portrait_url: string
+          role: string
+          slug: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          bio?: string
+          company?: string
+          consent?: string
+          created_at?: string
+          id?: string
+          location?: string
+          name: string
+          portfolio_url?: string
+          portrait_url?: string
+          role?: string
+          slug: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          bio?: string
+          company?: string
+          consent?: string
+          created_at?: string
+          id?: string
+          location?: string
+          name?: string
+          portfolio_url?: string
+          portrait_url?: string
+          role?: string
+          slug?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      pod_services: {
+        Row: {
+          category_id: string | null
+          created_at: string
+          cta_label: string
+          deliverables: Json
+          description: string
+          duration: string
+          email: string
+          experts: Json
+          fiverr_url: string
+          id: string
+          primary_cta: string
+          revisions: Json
+          slug: string
+          sort_order: number
+          status: string
+          summary: string
+          thumbnail_url: string
+          title: string
+          updated_at: string
+          upwork_url: string
+          whatsapp_url: string
+        }
+        Insert: {
+          category_id?: string | null
+          created_at?: string
+          cta_label?: string
+          deliverables?: Json
+          description?: string
+          duration?: string
+          email?: string
+          experts?: Json
+          fiverr_url?: string
+          id?: string
+          primary_cta?: string
+          revisions?: Json
+          slug: string
+          sort_order?: number
+          status?: string
+          summary?: string
+          thumbnail_url?: string
+          title: string
+          updated_at?: string
+          upwork_url?: string
+          whatsapp_url?: string
+        }
+        Update: {
+          category_id?: string | null
+          created_at?: string
+          cta_label?: string
+          deliverables?: Json
+          description?: string
+          duration?: string
+          email?: string
+          experts?: Json
+          fiverr_url?: string
+          id?: string
+          primary_cta?: string
+          revisions?: Json
+          slug?: string
+          sort_order?: number
+          status?: string
+          summary?: string
+          thumbnail_url?: string
+          title?: string
+          updated_at?: string
+          upwork_url?: string
+          whatsapp_url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pod_services_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "pod_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pod_settings: {
+        Row: {
+          id: string
+          settings: Json
+          updated_at: string
+        }
+        Insert: {
+          id: string
+          settings?: Json
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          settings?: Json
+          updated_at?: string
+        }
+        Relationships: []
+      }
       post_comments: {
         Row: {
           author_name: string
